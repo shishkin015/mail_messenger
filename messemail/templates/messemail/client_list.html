@@ -1,0 +1,41 @@
+{% extends 'messemail/base.html' %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">{{ title }}</div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>№</th>
+                    <th>ФИО</th>
+                    <th>eMail</th>
+                    <th>Комментарий</th>
+                    <th>Сообщение</th>
+                </tr>
+                {% for object in object_list %}
+                    <tr>
+                        <th><a href="{% url 'messemail:edit' object.pk %}">{{ object.pk }}</a></th>
+                        <td>{{ object.name }}</td>
+                        <td>{{ object.email }}</td>
+
+                        <td>
+                            {% if object.comment %}
+                                {{ object.comment }}
+                            {% else %}
+                                пусто
+                            {% endif %}
+                        </td>
+                        <td><a href="{% url 'messemail:message_list' object.pk %}">Сообщения</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="bg-dark p-1 text-right">
+            <a href="{% url 'messemail:create' %}" type="submit" class="btn btn-light">Добавить клиента</a>
+        </div>
+    </div>
+
+
+
+{% endblock %}
