@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+        <div class="col-9 mt-5 mb-5 text-center">
+            <h2>Тема: <br>{{ object.subject }}</h2>
+        </div>
+        <div class="col-9 mt-5 mb-5 text-center">
+                <p>Содержание рассылки: <br>{{ object.body }}</p>
+        </div>
+        <div class="col-9 mt-5 mb-5 text-center">
+                <p>
+                    Подписанные клиенты:
+                </p>
+                {% for customer in object.customers.all %}
+                    <p>
+                    {{ customer.email }}
+                    </p>
+                {% endfor %}
+                    Настройки:
+            <p>
+                <b>Дата начала рассылки: </b>{{ object.start_time }}
+            </p>
+            <p>
+                <b>Периодичность: </b>{{ object.get_interval_display }}
+            </p>
+            <p>
+                <b>Статус: </b>{{ object.get_status_display }}
+            </p>
+
+        </div>
+{% endblock %}
