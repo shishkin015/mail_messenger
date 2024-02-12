@@ -1,0 +1,18 @@
+{% extends 'messemail/base.html' %}
+
+{% block content %}
+    {% for message_item in object.message_set.all %}
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h3 class="my-0 font-weight-normal">{{ message_item.title }}</h3>
+            </div>
+            <div class="card-body">
+                <em>{{ message_item.text }}</em>
+
+            </div>
+        </div>
+    {% endfor %}
+    <div class="bg-dark p-1 text-right">
+        <a href="{% url 'messemail:message_create' %}" type="submit" class="btn btn-light">Добавить сообщение</a>
+    </div>
+{% endblock %}
